@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: User API
+  version: 1.0.0
+  description: API for user management
+paths:
+  /users:
+    post:
+      summary: Create a new user
+      description: Endpoint to create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Juan Rodriguez
+                email:
+                  type: string
+                  format: email
+                  example: juan@rodriguez.org
+                password:
+                  type: string
+                  format: password
+                  example: hunter2
+                phones:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      number:
+                        type: string
+                        example: 1234567
+                      citycode:
+                        type: string
+                        example: 1
+                      contrycode:
+                        type: string
+                        example: 57
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: Invalid input
