@@ -121,6 +121,9 @@
 							<generatorName>spring</generatorName>
 							<apiPackage>com.example.demo.api</apiPackage>
 							<modelPackage>com.example.demo.model</modelPackage>
+							<configOptions>
+								<delegatePattern>true</delegatePattern>
+							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
