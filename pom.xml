@@ -42,6 +42,39 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.mapstruct</groupId>
+		    <artifactId>mapstruct</artifactId>
+		    <version>1.5.5.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId>
+			<version>1.5.5.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.5</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>0.11.5</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -82,6 +115,11 @@
 	</dependencies>
 
 	<build>
+		<testResources>
+			<testResource>
+				<directory>${project.build.directory}/generated-sources/openapi/src/test/java</directory>
+			</testResource>
+		</testResources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -99,13 +137,13 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<!--
 				<configuration>
 					<source>17</source>
 					<target>17</target>
+					<!--
 					<generatedSourcesDirectory>${project.build.directory}/generated-sources/openapi</generatedSourcesDirectory>
+					-->
 				</configuration>
-				-->
 			</plugin>
 			<plugin>
 				<groupId>org.openapitools</groupId>
@@ -121,6 +159,8 @@
 							<generatorName>spring</generatorName>
 							<apiPackage>com.example.demo.api</apiPackage>
 							<modelPackage>com.example.demo.model</modelPackage>
+							<generateApiTests>false</generateApiTests>
+							<generateModelTests>false</generateModelTests>
 							<configOptions>
 								<delegatePattern>true</delegatePattern>
 							</configOptions>
