@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     public void saveUser(UsersPostRequest request) {
         Optional<User> optUser = userRepository.findByEmail(request.getEmail());
         if (optUser.isPresent()) {
-            throw new UserException("User already exists");
+            throw new UserException("El correo ya se ha registrado");
         }
         User userEntity = mapper.toEntity(request);
         userEntity.getPhones().forEach(phone -> {
