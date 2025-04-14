@@ -69,15 +69,15 @@ components:
           example: 123e4567-e89b-12d3-a456-426614174000
         created:
           type: string
-          format: date-time
+          format: string
           example: 2025-04-09T22:34:29Z
         modified:
           type: string
-          format: date-time
+          format: string
           example: 2025-04-09T22:34:29Z
         last_login:
           type: string
-          format: date-time
+          format: string
           example: 2025-04-09T22:34:29Z
         token:
           type: string
