@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.config.ParamsConfiguration;
 import com.example.demo.entity.Phone;
 import com.example.demo.entity.User;
 import com.example.demo.exception.UserException;
@@ -23,11 +24,15 @@ public class UserServiceImpl implements UserService {
 
     private UserMapper mapper;
 
+    private ParamsConfiguration params;
+
     public UserServiceImpl(
             UserRepository userRepository,
-            UserMapper mapper) {
+            UserMapper mapper,
+            ParamsConfiguration params) {
         this.userRepository = userRepository;
         this.mapper = mapper;
+        this.params = params;
     }
 
     @Override
@@ -54,7 +59,7 @@ public class UserServiceImpl implements UserService {
                 .setSubject(userResponse.getId().toString())
                 .claim("email", user.getEmail())
                 .claim("isactive", user.isActive())
-                .signWith(SignatureAlgorithm.HS256, "YQQHrCJmm81tvfML8njnXCg4CJn7vHHM56ykCdmm/Uk=")
+                .signWith(SignatureAlgorithm.HS256, params.getJwtSecretKey())
                 .compact();
         userResponse.setToken(jwt);
         return userResponse;
